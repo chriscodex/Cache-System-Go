@@ -10,10 +10,16 @@ func Fibonacci(n int) int {
 }
 
 type Memory struct {
-	f Function
+	f     Function
+	cache map[int]FunctionResult
 }
 
 type Function func(key int) (interface{}, error)
+
+type FunctionResult struct {
+	value interface{}
+	err   error
+}
 
 func main() {
 	f := Fibonacci(5)
