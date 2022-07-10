@@ -21,6 +21,13 @@ type FunctionResult struct {
 	err   error
 }
 
+func NewCache(f Function) *Memory {
+	return &Memory{
+		f:     f,
+		cache: make(map[int]FunctionResult),
+	}
+}
+
 func main() {
 	f := Fibonacci(5)
 	fmt.Println(f)
