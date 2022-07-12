@@ -45,7 +45,7 @@ func GetFibonacci(n int) interface{} {
 }
 
 func main() {
-	//startRun := time.Now()
+	startRun := time.Now()
 	cache := NewCache(GetFibonacci)
 	fibo := []int{42, 40, 41, 42, 38}
 	for _, n := range fibo {
@@ -53,5 +53,5 @@ func main() {
 		value := cache.Get(n)
 		fmt.Printf("%d,%s,%d\n", n, time.Since(start), value)
 	}
-	fmt.Println("Process Completed")
+	fmt.Printf("Process Completed in %s\n", time.Since(startRun))
 }
