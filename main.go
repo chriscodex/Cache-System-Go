@@ -28,6 +28,10 @@ func NewCache(f Function) *Memory {
 	}
 }
 
+func (m *Memory) Get(key int) (interface{}, error) {
+
+}
+
 func main() {
 	f := Fibonacci(5)
 	fmt.Println(f)
