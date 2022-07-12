@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"time"
+)
 
 func Fibonacci(n int) int {
 	if n <= 1 {
@@ -37,7 +41,19 @@ func (m *Memory) Get(key int) (interface{}, error) {
 	return result.value, result.err
 }
 
+func GetFibonacci(n int) (interface{}, error) {
+	return Fibonacci(n), nil
+}
+
 func main() {
-	f := Fibonacci(5)
-	fmt.Println(f)
+	cache := NewCache(GetFibonacci)
+	fibo := []int{42, 40, 41, 42, 38}
+	for _, n := range fibo {
+		start := time.Now()
+		value, err := cache.Get(n)
+		fmt.Printf("%d,%s,%d\n", n, time.Since(start), value)
+		if err != nil {
+			log.Println(err)
+		}
+	}
 }
