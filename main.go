@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"time"
 )
 
@@ -18,11 +17,10 @@ type Memory struct {
 	cache map[int]FunctionResult
 }
 
-type Function func(key int) (interface{}, error)
+type Function func(key int) interface{}
 
 type FunctionResult struct {
 	value interface{}
-	err   error
 }
 
 func NewCache(f Function) *Memory {
@@ -32,17 +30,17 @@ func NewCache(f Function) *Memory {
 	}
 }
 
-func (m *Memory) Get(key int) (interface{}, error) {
+func (m *Memory) Get(key int) interface{} {
 	result, exists := m.cache[key]
 	if !exists {
-		result.value, result.err = m.f(key)
+		result.value = m.f(key)
 		m.cache[key] = result
 	}
-	return result.value, result.err
+	return result.value
 }
 
-func GetFibonacci(n int) (interface{}, error) {
-	return Fibonacci(n), nil
+func GetFibonacci(n int) interface{} {
+	return Fibonacci(n)
 }
 
 func main() {
@@ -50,10 +48,8 @@ func main() {
 	fibo := []int{42, 40, 41, 42, 38}
 	for _, n := range fibo {
 		start := time.Now()
-		value, err := cache.Get(n)
+		value := cache.Get(n)
 		fmt.Printf("%d,%s,%d\n", n, time.Since(start), value)
-		if err != nil {
-			log.Println(err)
-		}
+
 	}
 }
