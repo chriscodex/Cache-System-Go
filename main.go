@@ -50,6 +50,5 @@ func main() {
 		start := time.Now()
 		value := cache.Get(n)
 		fmt.Printf("%d,%s,%d\n", n, time.Since(start), value)
-
 	}
 }
