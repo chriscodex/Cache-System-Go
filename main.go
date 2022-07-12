@@ -21,6 +21,7 @@ type Function func(key int) interface{}
 
 type FunctionResult struct {
 	value interface{}
+	err   error
 }
 
 func NewCache(f Function) *Memory {
