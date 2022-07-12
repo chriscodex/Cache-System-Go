@@ -31,8 +31,8 @@ func NewCache(f Function) *Memory {
 }
 
 func (m *Memory) Get(key int) interface{} {
-	result, exists := m.cache[key]
-	if !exists {
+	result, exist := m.cache[key]
+	if !exist {
 		result.value = m.f(key)
 		m.cache[key] = result
 	}
