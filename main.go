@@ -6,11 +6,13 @@ import (
 	"time"
 )
 
-func Fibonacci(n int) int {
+func Fibonacci(cache *Memory, n int) int {
 	if n <= 1 {
 		return n
 	}
-	return Fibonacci(n-1) + Fibonacci(n-2)
+	fb1, _ := GetFibonacci(cache, n-1)
+	fb2, _ := GetFibonacci(cache, n-2)
+	return fb1.(int) + fb2.(int)
 }
 
 type Memory struct {
