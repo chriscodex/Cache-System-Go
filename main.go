@@ -66,5 +66,5 @@ func main() {
 		}
 		fmt.Printf("%d, %s, %d\n", n, time.Since(start), value)
 	}
-
+	fmt.Printf("Process completed in %s\n", time.Since(startRun))
 }
