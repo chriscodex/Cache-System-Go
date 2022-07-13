@@ -18,7 +18,7 @@ type Memory struct {
 	cache map[int]FunctionResult
 }
 
-type Function func(key int) (interface{}, error)
+type Function func(cache *Memory, key int) (interface{}, error)
 
 type FunctionResult struct {
 	value interface{}
