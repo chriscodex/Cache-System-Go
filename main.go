@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -55,5 +56,15 @@ func main() {
 	cache := NewCache(func(cache *Memory, n int) (interface{}, error) {
 		return Fibonacci(cache, n), nil
 	})
+	for i := 0; i < len(fibo); i++ {
+		n := fibo[i]
+		start := time.Now()
+		value, err := GetFibonacci(cache, n)
+		if err != nil {
+			fmt.Println(err.Error())
+			continue
+		}
+		fmt.Printf("%d, %s, %d\n", n, time.Since(start), value)
+	}
 
 }
