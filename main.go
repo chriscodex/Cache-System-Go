@@ -25,8 +25,12 @@ type FunctionResult struct {
 	err   error
 }
 
-func GetFibonacci(n int) (interface{}, error) {
-	return Fibonacci(n), nil
+func GetFibonacci(cache *Memory, n int) (interface{}, error) {
+	value, err := cache.Get(n)
+	if err != nil {
+		return nil, err
+	}
+	return value, nil
 }
 
 func NewCache(f Function) *Memory {
