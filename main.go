@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"time"
 )
 
@@ -52,16 +50,10 @@ func (m *Memory) Get(key int) (interface{}, error) {
 }
 
 func main() {
-	startRun := time.Now()
-	cache := NewCache(GetFibonacci)
 	fibo := []int{42, 40, 41, 42, 38}
-	for _, n := range fibo {
-		start := time.Now()
-		value, err := cache.Get(n)
-		fmt.Printf("%d,%s,%d\n", n, time.Since(start), value)
-		if err != nil {
-			log.Println(err)
-		}
-	}
-	fmt.Printf("Process completed in %s\n", time.Since(startRun))
+	startRun := time.Now()
+	cache := NewCache(func(cache *Memory, n int) (interface{}, error) {
+		return Fibonacci(cache, n), nil
+	})
+
 }
