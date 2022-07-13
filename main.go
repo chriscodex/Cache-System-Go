@@ -25,5 +25,5 @@ func main() {
 		fmt.Printf("%d, %s, %d\n", n, time.Since(start), value)
 	}
 	fmt.Println(cache.Cache)
-	fmt.Printf("Process completed in %s\n", time.Since(startRun))
+	fmt.Printf("Process Completed in %s\n", time.Since(startRun))
 }
